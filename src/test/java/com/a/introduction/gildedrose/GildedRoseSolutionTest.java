@@ -14,6 +14,7 @@ public class GildedRoseSolutionTest {
     private int MAX_QUALITY = 50;
     private final String DEFAULT_ITEM = "DEFAULT_ITEM";
     private final String AGED_BRIE = "Aged Brie";
+    private final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     @Test
     public void shouldDecreaseQualityByOneForNonExpiredItem(){
@@ -71,12 +72,23 @@ public class GildedRoseSolutionTest {
     }
 
     @Test
-    public void shouldIncreaseQualityByOneForBackStage(){
-        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, POSITIVE_SELL_IN_LESS_THAN_5, DEFAULT_QUALITY);
+    public void shouldIncreaseQualityByTwoForBackStageBetweenFiveAndTen(){
+        GildedRose app = createGildedRoseWithDefaultItem(BACKSTAGE_PASSES, POSITIVE_SELL_IN_BETWEEN_5_AND_10, DEFAULT_QUALITY);
 
         app.updateQuality();
 
-        Item expected = new Item(AGED_BRIE, POSITIVE_SELL_IN_LESS_THAN_5 - 1, DEFAULT_QUALITY + 1);
+        Item expected = new Item(BACKSTAGE_PASSES, POSITIVE_SELL_IN_BETWEEN_5_AND_10 - 1, DEFAULT_QUALITY + 2);
+
+        assertItem(expected, app.items[0]);
+    }
+
+    @Test
+    public void shouldIncreaseQualityByThreeForBackStageLessThanFiveDays(){
+        GildedRose app = createGildedRoseWithDefaultItem(BACKSTAGE_PASSES, POSITIVE_SELL_IN_LESS_THAN_5, DEFAULT_QUALITY);
+
+        app.updateQuality();
+
+        Item expected = new Item(BACKSTAGE_PASSES,POSITIVE_SELL_IN_LESS_THAN_5 - 1, DEFAULT_QUALITY + 3);
 
         assertItem(expected, app.items[0]);
     }

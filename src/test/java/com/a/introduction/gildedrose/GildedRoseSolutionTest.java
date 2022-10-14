@@ -72,6 +72,17 @@ public class GildedRoseSolutionTest {
     }
 
     @Test
+    public void shouldIncreaseQualityByOneForBackStageGreaterThanTen(){
+        GildedRose app = createGildedRoseWithDefaultItem(BACKSTAGE_PASSES, NOT_EXPIRED_SELL_IN_MORE_THAN_10, DEFAULT_QUALITY);
+
+        app.updateQuality();
+
+        Item expected = new Item(BACKSTAGE_PASSES, NOT_EXPIRED_SELL_IN_MORE_THAN_10 - 1, DEFAULT_QUALITY + 1);
+
+        assertItem(expected, app.items[0]);
+    }
+
+    @Test
     public void shouldIncreaseQualityByTwoForBackStageBetweenFiveAndTen(){
         GildedRose app = createGildedRoseWithDefaultItem(BACKSTAGE_PASSES, POSITIVE_SELL_IN_BETWEEN_5_AND_10, DEFAULT_QUALITY);
 

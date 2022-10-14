@@ -1,15 +1,16 @@
 package com.a.introduction.gildedrose;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class GildedRoseADefaultItemTest {
 	/**
 	 * Method to test the variation in quality of the item for the non expired
 	 * Item.
 	 * 
-	 * The quality should decrease by 1 when the item is not expired
+	 * The quality should decrease by 1 when the item is not expired~
 	 * and sell in should decrease by 1.
 	 * 
 	 */

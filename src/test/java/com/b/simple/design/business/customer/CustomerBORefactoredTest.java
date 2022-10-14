@@ -1,15 +1,13 @@
 package com.b.simple.design.business.customer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import com.b.simple.design.business.exception.DifferentCurrenciesException;
 import com.b.simple.design.model.customer.Amount;
@@ -49,7 +47,7 @@ public class CustomerBORefactoredTest {
 				
 		List<Product> products = createProductsWithAmounts(amounts);
 		
-		Assertions.assertThrows(DifferentCurrenciesException.class, ()->{
+		assertThrows(DifferentCurrenciesException.class, ()->{
 			customerBO.getCustomerProductsSum(products);
 		});
 		

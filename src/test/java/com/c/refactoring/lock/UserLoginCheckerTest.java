@@ -1,14 +1,12 @@
 package com.c.refactoring.lock;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Date;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
 public class UserLoginCheckerTest {
     UserLoginChecker userLoginChecker = new UserLoginChecker();

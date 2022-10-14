@@ -6,7 +6,9 @@ import static org.junit.Assert.assertEquals;
 
 public class GildedRoseSolutionTest {
 
-    private int NOT_EXPIRED_SELL_IN = 15;
+    private int NOT_EXPIRED_SELL_IN_MORE_THAN_10 = 15;
+    private int POSITIVE_SELL_IN_LESS_THAN_5 = 3;
+    private int POSITIVE_SELL_IN_BETWEEN_5_AND_10 = 8;
     private int EXPIRED_SELL_IN = -1;
     private int DEFAULT_QUALITY = 3;
     private int MAX_QUALITY = 50;
@@ -15,11 +17,11 @@ public class GildedRoseSolutionTest {
 
     @Test
     public void shouldDecreaseQualityByOneForNonExpiredItem(){
-        GildedRose app = createGildedRoseWithDefaultItem(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN,DEFAULT_QUALITY);
+        GildedRose app = createGildedRoseWithDefaultItem(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN_MORE_THAN_10,DEFAULT_QUALITY);
 
         app.updateQuality();
 
-        Item expected = new Item(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN - 1, DEFAULT_QUALITY - 1);
+        Item expected = new Item(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN_MORE_THAN_10 - 1, DEFAULT_QUALITY - 1);
 
         assertItem(expected, app.items[0]);
     }
@@ -37,11 +39,11 @@ public class GildedRoseSolutionTest {
 
     @Test
     public void shouldIncreaseQualityByOneForAgedBrie(){
-        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, NOT_EXPIRED_SELL_IN, DEFAULT_QUALITY);
+        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, NOT_EXPIRED_SELL_IN_MORE_THAN_10, DEFAULT_QUALITY);
 
         app.updateQuality();
 
-        Item expected = new Item(AGED_BRIE, NOT_EXPIRED_SELL_IN - 1, DEFAULT_QUALITY + 1);
+        Item expected = new Item(AGED_BRIE, NOT_EXPIRED_SELL_IN_MORE_THAN_10 - 1, DEFAULT_QUALITY + 1);
 
         assertItem(expected, app.items[0]);
     }
@@ -59,11 +61,22 @@ public class GildedRoseSolutionTest {
 
     @Test
     public void shouldNotIncreaseQualityAfterMaxValue(){
-        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, NOT_EXPIRED_SELL_IN, MAX_QUALITY);
+        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, NOT_EXPIRED_SELL_IN_MORE_THAN_10, MAX_QUALITY);
 
         app.updateQuality();
 
-        Item expected = new Item(AGED_BRIE, NOT_EXPIRED_SELL_IN - 1, MAX_QUALITY);
+        Item expected = new Item(AGED_BRIE, NOT_EXPIRED_SELL_IN_MORE_THAN_10 - 1, MAX_QUALITY);
+
+        assertItem(expected, app.items[0]);
+    }
+
+    @Test
+    public void shouldIncreaseQualityByOneForBackStage(){
+        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, POSITIVE_SELL_IN_LESS_THAN_5, DEFAULT_QUALITY);
+
+        app.updateQuality();
+
+        Item expected = new Item(AGED_BRIE, POSITIVE_SELL_IN_LESS_THAN_5 - 1, DEFAULT_QUALITY + 1);
 
         assertItem(expected, app.items[0]);
     }

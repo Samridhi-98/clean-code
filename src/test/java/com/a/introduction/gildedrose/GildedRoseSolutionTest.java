@@ -13,27 +13,36 @@ public class GildedRoseSolutionTest {
 
     @Test
     public void shouldDecreaseQualityByOneForNonExpiredItem(){
-        Item item = new Item(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN, QUALITY);
-        Item[] items = new Item[] { item };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = createGildedRoseWithDefaultItem(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN,QUALITY);
 
         app.updateQuality();
 
-        assertEquals(DEFAULT_ITEM, app.items[0].name);
-        assertEquals(NOT_EXPIRED_SELL_IN - 1, app.items[0].sellIn);
-        assertEquals(QUALITY - 1, app.items[0].quality);
+        Item expected = new Item(DEFAULT_ITEM, NOT_EXPIRED_SELL_IN - 1, QUALITY - 1);
+
+        assertItem(expected, app.items[0]);
     }
 
     @Test
     public void shouldDecreaseQualityByTwoForExpiredItem(){
-        Item item = new Item(DEFAULT_ITEM, EXPIRED_SELL_IN, QUALITY);
-        Item[] items = new Item[] { item };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = createGildedRoseWithDefaultItem(DEFAULT_ITEM, EXPIRED_SELL_IN, QUALITY);
 
         app.updateQuality();
 
-        assertEquals(DEFAULT_ITEM, app.items[0].name);
-        assertEquals(EXPIRED_SELL_IN - 1, app.items[0].sellIn);
-        assertEquals(QUALITY - 2, app.items[0].quality);
+        Item expected = new Item(DEFAULT_ITEM, EXPIRED_SELL_IN - 1, QUALITY - 2);
+
+        assertItem(expected, app.items[0]);
+    }
+
+    private GildedRose createGildedRoseWithDefaultItem(String itemName, int sell_in, int quality){
+        Item item = new Item(itemName, sell_in,quality);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        return app;
+    }
+
+    private void assertItem(Item expected, Item actual) {
+        assertEquals(expected.name, actual.name);
+        assertEquals(expected.sellIn, actual.sellIn);
+        assertEquals(expected.quality, actual.quality);
     }
 }

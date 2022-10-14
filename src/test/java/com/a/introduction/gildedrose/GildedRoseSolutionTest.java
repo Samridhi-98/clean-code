@@ -9,6 +9,7 @@ public class GildedRoseSolutionTest {
     private int NOT_EXPIRED_SELL_IN = 15;
     private int EXPIRED_SELL_IN = -1;
     private int DEFAULT_QUALITY = 3;
+    private int MAX_QUALITY = 50;
     private final String DEFAULT_ITEM = "DEFAULT_ITEM";
     private final String AGED_BRIE = "Aged Brie";
 
@@ -56,6 +57,16 @@ public class GildedRoseSolutionTest {
         assertItem(expected, app.items[0]);
     }
 
+    @Test
+    public void shouldNotIncreaseQualityAfterMaxValue(){
+        GildedRose app = createGildedRoseWithDefaultItem(AGED_BRIE, NOT_EXPIRED_SELL_IN, MAX_QUALITY);
+
+        app.updateQuality();
+
+        Item expected = new Item(AGED_BRIE, NOT_EXPIRED_SELL_IN - 1, MAX_QUALITY);
+
+        assertItem(expected, app.items[0]);
+    }
 
     private GildedRose createGildedRoseWithDefaultItem(String itemName, int sell_in, int quality){
         Item item = new Item(itemName, sell_in,quality);

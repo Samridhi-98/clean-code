@@ -20,11 +20,30 @@ public class StudentHelperSolution {
 
         if (mark > 90 + extraLimit) {
             grade = "A";
-        }
-        else if (mark > 50 + extraLimit) {
+        } else if (mark > 50 + extraLimit) {
             grade = "B";
         }
         return grade;
+    }
+
+    public String willQualifyForQuiz(int marks1, int marks2, boolean isMaths) {
+        int extraLimit = isMaths ? 5 : 0;
+
+        if (isNotGood(marks1, extraLimit) || isNotGood(marks2, extraLimit)) {
+            return "NO";
+        }
+        if (isGood(marks1, extraLimit) || isGood(marks2, extraLimit)) {
+            return "NO";
+        }
+        return "MAYBE";
+    }
+
+    private boolean isGood(int mark, int extraLimit) {
+        return mark > 80 + extraLimit;
+    }
+
+    private boolean  isNotGood(int mark,  int extraLimit){
+        return mark < 20 + extraLimit;
     }
 
 }

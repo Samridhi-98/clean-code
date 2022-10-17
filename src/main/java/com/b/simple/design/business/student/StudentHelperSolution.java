@@ -12,4 +12,19 @@ public class StudentHelperSolution {
 
         return marks >= GRADE_B_LOWER_LIMIT && marks <= upperLimit;
     }
+
+    public String getGrade(int mark, boolean isMaths) {
+        String grade = "C";
+
+        int extraLimit = isMaths ? 5 : 0;
+
+        if (mark > 90 + extraLimit) {
+            grade = "A";
+        }
+        else if (mark > 50 + extraLimit) {
+            grade = "B";
+        }
+        return grade;
+    }
+
 }

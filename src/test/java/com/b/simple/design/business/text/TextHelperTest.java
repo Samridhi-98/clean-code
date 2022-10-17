@@ -2,13 +2,12 @@ package com.b.simple.design.business.text;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import com.b.simple.design.business.text.TextHelper;
 import org.junit.jupiter.api.Disabled;
 
 public class TextHelperTest {
 
 	TextHelper helper = new TextHelper();
+	TextHelperSolution helperSolution = new TextHelperSolution();
 	
 	@Test
 	@Disabled
@@ -27,5 +26,13 @@ public class TextHelperTest {
 		assertEquals("CD",helper.truncateAInFirst2Positions("AACD"));
 		assertEquals("BCD",helper.truncateAInFirst2Positions("BACD"));
 		assertEquals("BBAA",helper.truncateAInFirst2Positions("BBAA"));
+	}
+
+	@Test
+	public void shouldSwapLastTwoCharacters() {
+		assertEquals("",helperSolution.swapLastTwoCharacters(""));
+		assertEquals("A",helperSolution.swapLastTwoCharacters("A"));
+		assertEquals("BA",helperSolution.swapLastTwoCharacters("AB"));
+		assertEquals("RANI",helperSolution.swapLastTwoCharacters("RAIN"));
 	}
 }

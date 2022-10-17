@@ -35,4 +35,13 @@ public class TextHelperTest {
 		assertEquals("BA",helperSolution.swapLastTwoCharacters("AB"));
 		assertEquals("RANI",helperSolution.swapLastTwoCharacters("RAIN"));
 	}
+
+	@Test
+	public void shouldTruncateAInFirst2Positions() {
+		assertEquals("",helperSolution.truncateAInFirst2Positions(""));
+		assertEquals("BCD",helperSolution.truncateAInFirst2Positions("ABCD"));
+		assertEquals("CD",helperSolution.truncateAInFirst2Positions("AACD"));
+		assertEquals("BCD",helperSolution.truncateAInFirst2Positions("BACD"));
+		assertEquals("BBAA",helperSolution.truncateAInFirst2Positions("BBAA"));
+	}
 }

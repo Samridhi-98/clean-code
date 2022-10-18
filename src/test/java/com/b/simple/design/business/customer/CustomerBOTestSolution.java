@@ -5,6 +5,7 @@ import com.b.simple.design.model.customer.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +38,17 @@ public class CustomerBOTestSolution {
         List<Product> products = createProductWithAmount(amounts);
 
         assertThrows(DifferentCurrenciesException.class,() -> customerBO.getCustomerProductsSum(products));
+    }
+
+    @Test
+    public void testCustomerProductSum_ForEmptyProductList() throws DifferentCurrenciesException {
+
+        List<Product> products = new ArrayList<Product>();
+
+        Amount actual = customerBO.getCustomerProductsSum(products);;
+        Amount expected = new AmountImpl(BigDecimal.ZERO, Currency.EURO);
+
+        assertAmount(expected,actual);
     }
 
     private void assertAmount(Amount expected, Amount actual) {

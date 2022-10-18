@@ -5,12 +5,12 @@ import com.b.simple.design.model.customer.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class CustomerBOTestSolution {
 
@@ -27,6 +27,16 @@ public class CustomerBOTestSolution {
         Amount actual = customerBO.getCustomerProductsSum(products);
 
         assertAmount(expected, actual);
+    }
+
+    @Test
+    public void testCustomerProductSum_TwoProductsDifferentCurrencies() throws DifferentCurrenciesException {
+
+        Amount[] amounts = {new AmountImpl(new BigDecimal("5.0"), Currency.EURO), new AmountImpl(new BigDecimal("6.0"), Currency.INDIAN_RUPEE)};
+
+        List<Product> products = createProductWithAmount(amounts);
+
+        assertThrows(DifferentCurrenciesException.class,() -> customerBO.getCustomerProductsSum(products));
     }
 
     private void assertAmount(Amount expected, Amount actual) {

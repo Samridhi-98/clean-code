@@ -16,6 +16,7 @@ import static org.junit.Assert.assertThrows;
 public class CustomerBOTestSolution {
 
     private CustomerBO customerBO = new CustomerBOImpl();
+    private CustomerBO customerBOImplSolution = new CustomerBOImplSolution();
 
     @Test
     public void testCustomerProductSum_TwoProductsSameCurrencies() throws DifferentCurrenciesException {

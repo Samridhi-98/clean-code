@@ -2,7 +2,7 @@ package com.d.tdd;
 
 public class StringHelper {
 
-	public String replaceAInFirst2Positions(String str) {
+	public String replaceAInFirstTwoPositions(String str) {
 		
 		if(str.length()<2)
 			return str.replaceAll("A", "");

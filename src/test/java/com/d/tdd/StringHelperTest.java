@@ -9,16 +9,16 @@ class StringHelperTest {
 
 	@Test
 	void testReplaceAInFirst2Positions() {
-		assertEquals("BCD", helper.replaceAInFirst2Positions("ABCD"));
-		assertEquals("CD", helper.replaceAInFirst2Positions("AACD"));
-		assertEquals("BCD", helper.replaceAInFirst2Positions("BACD"));
-		assertEquals("AA", helper.replaceAInFirst2Positions("AAAA"));
-		assertEquals("MNAA", helper.replaceAInFirst2Positions("MNAA"));
-		assertEquals("", helper.replaceAInFirst2Positions(""));
-		assertEquals("", helper.replaceAInFirst2Positions("A"));
-		assertEquals("", helper.replaceAInFirst2Positions("AA"));
-		assertEquals("B", helper.replaceAInFirst2Positions("B"));
-		assertEquals("BC", helper.replaceAInFirst2Positions("BC"));
+		assertEquals("BCD", helper.replaceAInFirstTwoPositions("ABCD"));
+		assertEquals("CD", helper.replaceAInFirstTwoPositions("AACD"));
+		assertEquals("BCD", helper.replaceAInFirstTwoPositions("BACD"));
+		assertEquals("AA", helper.replaceAInFirstTwoPositions("AAAA"));
+		assertEquals("MNAA", helper.replaceAInFirstTwoPositions("MNAA"));
+		assertEquals("", helper.replaceAInFirstTwoPositions(""));
+		assertEquals("", helper.replaceAInFirstTwoPositions("A"));
+		assertEquals("", helper.replaceAInFirstTwoPositions("AA"));
+		assertEquals("B", helper.replaceAInFirstTwoPositions("B"));
+		assertEquals("BC", helper.replaceAInFirstTwoPositions("BC"));
 	}
 	
 	//""=>false, "A"=>false, "AB"=>true, "ABC"=>false, "AAA"=>true, "ABCAB"=>true, "ABCDEBA"=>false
